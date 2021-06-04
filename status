@@ -1,0 +1,35 @@
+[33mcommit 673dec46bbab1db40f7fc19038f790a3ac11f1c1[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: alex <contact@alex-vicol.com>
+Date:   Thu Jun 3 17:58:23 2021 +0100
+
+    Games data fetched using reducers and actions
+
+[33mcommit e0d098175275301b95f3e2b846369761fb5b6b5c[m
+Author: alex <contact@alex-vicol.com>
+Date:   Wed Jun 2 19:34:10 2021 +0100
+
+    Redux set up
+
+[33mcommit 3406ff6b3de165e792e14cee81f1792e22d0e53a[m
+Author: alex <contact@alex-vicol.com>
+Date:   Tue Jun 1 19:16:14 2021 +0100
+
+    Initial set up - dependencies added
+
+[33mcommit 06afd1283b2261f9be864d87b905947acd90a1f6[m
+Author: alex <contact@alex-vicol.com>
+Date:   Tue Jun 1 19:10:04 2021 +0100
+
+    API set up
+
+[33mcommit b2113b975f2c1bd5575a03a6a67e4c4b09064a8b[m
+Author: alex <contact@alex-vicol.com>
+Date:   Tue Jun 1 19:04:41 2021 +0100
+
+    Images added
+
+[33mcommit 81eece80369294750a4dc628760a99997018c351[m
+Author: alex <contact@alex-vicol.com>
+Date:   Tue Jun 1 19:02:34 2021 +0100
+
+    Initialize project using Create React App
