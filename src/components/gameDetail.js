@@ -3,12 +3,27 @@ import styled from 'styled-components';
 import {motion} from 'framer-motion';
 
 //Redux
-import{useSelector} from 'react-redux'
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 const GameDetail = () => {
-    const {game, screen} = useSelector(state => state.detail)
+
+    const {game, screen, isLoading} = useSelector(state => state.detail)
+    
+    const history = useHistory();
+
+    //Exit Detail handler
+    const exitDetailHandler = (e)=> {
+        const element = e.target;
+        if(element.classList.contains('shadow')){
+            document.body.style.overflow = 'auto';
+            history.push('/')
+        }
+    }
+
     return(
-       <StyledCardShadow>
+      <>
+       {!isLoading && ( <StyledCardShadow className ="shadow" onClick={exitDetailHandler}> 
            <StyledDetail>
                 <StyledStats>
                     <div className='rating'>
@@ -18,7 +33,7 @@ const GameDetail = () => {
                     <StyledInfo>
                         <h3>Platforms</h3>
                         <StyledPlatforms>
-                            {game.platforms.map((data) =>( <h3 key={data.platform.id}>{data.platform.name} </h3>))}
+                            {game.platforms.map((data) =>(<h3 key={data.platform.id}>{data.platform.name} </h3>))}
                         </StyledPlatforms>
                     </StyledInfo>
                 </StyledStats>
@@ -33,8 +48,10 @@ const GameDetail = () => {
                       <img src ={screen.image} key ={screen.id} alt={screen.id}/>
                   ))}
                 </div>
-           </StyledDetail>
-       </StyledCardShadow>
+               </StyledDetail>
+          </StyledCardShadow>
+       )}
+       </>
     );
 }
 
@@ -68,13 +85,11 @@ const StyledDetail = styled(motion.div)`
         width:100%;
     }
 `
-
 const StyledStats = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
 `
-
 const StyledInfo = styled(motion.div)`
     text-align: center;
 `
@@ -91,7 +106,6 @@ const StyledMedia = styled(motion.div)`
         width: 100%;
     }
 `
-
 const StyledDescription = styled(motion.div)`
     margin: 3rem 0rem;
 `

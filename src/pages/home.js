@@ -10,20 +10,24 @@ import GameDetail from '../components/gameDetail'
 //Styling and Animation
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
+import {useLocation} from 'react-router-dom';
 
 const Home = () => {
-
-    const {popular, upcoming} = useSelector(state => state.games)
-    
+    //Current Location
+    const location = useLocation();
+    const pathId = location.pathname.split('/')[2];
+   
+    //FETCH GAMES
     const dispatch = useDispatch();
-    
     useEffect( ()=> {
         dispatch(loadGames());
     }, [dispatch])
 
+    const {popular, upcoming} = useSelector(state => state.games)
+
     return(
      <StyleGameList>
-        <GameDetail /> 
+     {pathId && <GameDetail /> }
         <h2>Popular Games</h2>
         <StyledGames>
            {popular.map( game => (
