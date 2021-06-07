@@ -9,7 +9,7 @@ import GameDetail from '../components/gameDetail'
 
 //Styling and Animation
 import styled from 'styled-components';
-import {motion} from 'framer-motion';
+import {motion, AnimatePresence, AnimateSharedLayout} from 'framer-motion';
 import {useLocation} from 'react-router-dom';
 
 const Home = () => {
@@ -26,34 +26,40 @@ const Home = () => {
     const {popular, upcoming} = useSelector(state => state.games)
 
     return(
+         <AnimateSharedLayout >
      <StyleGameList>
-     {pathId && <GameDetail /> }
-        <h2>Popular Games</h2>
-        <StyledGames>
-           {popular.map( game => (
-              <Game 
-                 name= {game.name}
-                 id ={game.id}
-                 released ={game.released}
-                 key = {game.name}
-                 image ={game.background_image}
-             />)
-           )}
-        </StyledGames>
+       
+            <AnimatePresence> 
+                {pathId && <GameDetail pathId={pathId} /> }
+            </AnimatePresence>
+            <h2>Popular Games</h2>
+            <StyledGames>
+            {popular.map( game => (
+                <Game 
+                    name= {game.name}
+                    id ={game.id}
+                    released ={game.released}
+                    key = {game.name}
+                    image ={game.background_image}
+                />)
+            )}
+            </StyledGames>
 
-        <h2>Upcomig Games</h2>
-       <StyledGames>
-           {upcoming.map( game => (
-              <Game 
-                 name= {game.name}
-                 id ={game.id}
-                 released ={game.released}
-                 key = {game.name}
-                 image ={game.background_image}
-             />)
-           )}
-        </StyledGames>
+            <h2>Upcomig Games</h2>
+            <StyledGames>
+            {upcoming.map( game => (
+                <Game 
+                    name= {game.name}
+                    id ={game.id}
+                    released ={game.released}
+                    key = {game.name}
+                    image ={game.background_image}
+                />)
+            )}
+            </StyledGames>
+     
      </StyleGameList>
+        </AnimateSharedLayout>
     )
 }
 const StyleGameList = styled(motion.div)`

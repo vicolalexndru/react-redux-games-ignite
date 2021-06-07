@@ -6,7 +6,7 @@ import {motion} from 'framer-motion';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
-const GameDetail = () => {
+const GameDetail = ({pathId}) => {
 
     const {game, screen, isLoading} = useSelector(state => state.detail)
     
@@ -20,11 +20,10 @@ const GameDetail = () => {
             history.push('/')
         }
     }
-
     return(
       <>
        {!isLoading && ( <StyledCardShadow className ="shadow" onClick={exitDetailHandler}> 
-           <StyledDetail>
+           <StyledDetail layoutId ={pathId}>
                 <StyledStats>
                     <div className='rating'>
                        <h3>{game.name}</h3>
@@ -38,16 +37,16 @@ const GameDetail = () => {
                     </StyledInfo>
                 </StyledStats>
                 <StyledMedia>
-                    <img src={game.background_image} alt = 'name'></img>
+                    <motion.img src={game.background_image} alt = 'name' layoutId={`image ${pathId}`}/>
                 </StyledMedia>
                 <StyledDescription>
                   <p>{game.description_raw}</p>
                 </StyledDescription>
-                <div className='gallery'>
+                {/* <div className='gallery'>
                   {screen.results.map(screen => (
                       <img src ={screen.image} key ={screen.id} alt={screen.id}/>
                   ))}
-                </div>
+                </div> */}
                </StyledDetail>
           </StyledCardShadow>
        )}
