@@ -1,7 +1,6 @@
 //Styling and Animation
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
-
 //Redux
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -12,7 +11,7 @@ import xbox from "../img/xbox.svg";
 import nintendo from "../img/nintendo.svg";
 import apple from "../img/apple.svg";
 import gamepad from "../img/gamepad.svg";
-//Star Images
+//Rating Images
 import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 
@@ -33,21 +32,35 @@ const GameDetail = ({pathId}) => {
 
    //Get platform Images
    const getPlatform = (platform) => {
-    switch (platform) {
-      case "PlayStation 4":
-        return playstation;
-      case "Xbox One":
-        return xbox;
-      case "PC":
-        return steam;
-      case "Nintendo Switch":
-        return nintendo;
-      case "iOS":
-        return apple;
-      default:
-        return gamepad;
-    }
+        switch (platform) {
+        case "PlayStation 4":
+            return playstation;
+        case "Xbox One":
+            return xbox;
+        case "PC":
+            return steam;
+        case "Nintendo Switch":
+            return nintendo;
+        case "iOS":
+            return apple;
+        default:
+            return gamepad;
+        }
   };
+  
+  //Display Rating Icons
+  const getRatingStars = ()=>{
+      const stars = [];
+      const rating = Math.floor(game.rating);
+      for (let i = 1; i <= 5; i++) {
+          if (i <= rating) {
+              stars.push(<img src={starFull} alt={i} key={i} />)
+          }else{
+               stars.push(<img src={starEmpty} alt={i} key={i} />)
+          }
+      }
+      return stars;
+  }
 
     return(
       <>
@@ -57,6 +70,7 @@ const GameDetail = ({pathId}) => {
                     <div className='rating'>
                        <h3>{game.name}</h3>
                        <p>Rating: {game.rating}</p>
+                       {getRatingStars()}
                     </div>
                     <StyledInfo>
                         <h3>Platforms</h3>
@@ -119,6 +133,11 @@ const StyledStats = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    img{
+        width: 1rem;
+        height: 1rem;
+        display: inline;
+    }
 `
 const StyledInfo = styled(motion.div)`
     text-align:right;
