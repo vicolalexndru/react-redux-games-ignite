@@ -9,12 +9,14 @@ import {Link} from 'react-router-dom';
 
 const Game = ({name, id, image, released}) => {
 const stringPathId = id.toString();
+
 //Load details
 const dispatch = useDispatch();
 const loadDetailHandler = () => {
     document.body.style.overflow = 'hidden';
     dispatch(loadDetail(id));
 }
+
      return(
          <StyledGame layoutId={stringPathId} onClick ={loadDetailHandler}>
              <Link to={`/game/${id}`}>

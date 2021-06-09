@@ -1,15 +1,31 @@
+import{useState} from 'react';
 //Styling and Animation
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 
+//REDUX and Routes
+import{useDispatch} from 'react-redux';
+import{fetchSearch} from '../actions/gamesAction.js'
 
 const Nav = () => {
+    const dispatch = useDispatch();
+    const [textInput, setTextInput] = useState("");
+    const inputHandler = (e) => {
+       setTextInput(e.target.value) 
+}
+
+const submitSearch = (e) => {
+    e.preventDefault();
+    dispatch(fetchSearch(textInput));
+    setTextInput('');
+}
+
     return(
       <StyleNav>
         <StyledSearch>
             <form>
-                <input type='search' placeholder='Search Game' />
-                <button type='submit'>Search</button>
+                <input value={textInput} onChange={inputHandler}type='search' placeholder='Search Game' />
+                <button type='submit' onClick={submitSearch}>Search</button>
             </form>
         </StyledSearch>
       </StyleNav>
